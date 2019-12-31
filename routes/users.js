@@ -31,7 +31,7 @@ router.post('/', upload.single('img'), function(req,res,next){
   console.log('aaaaaaaa');
   var name = req.body.name;
   var email = req.body.email;
-  var img = req.file.path;
+  var img = ('images/uploads/'+req.file.originalname);
 
 
   var post = {name:name,email:email,img:img};

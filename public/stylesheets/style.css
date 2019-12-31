@@ -40,6 +40,7 @@ li{
   display:inline-block;
   margin:40px;
   font-size: 30px;
+  line-height: normal;
 }
 a{
   text-decoration: none;
@@ -50,4 +51,71 @@ input{
   margin:30px;
   width:300px;
   height:30px;
+}
+img{
+  height:80%;
+  width:80%;
+  margin-top: 15px;
+  border-radius: 10%;
+}
+.image_area{
+  width:200px;
+  height:200px;
+  padding:10px;
+  background-color: #eeeeee;
+  text-align: center;
+}
+.image_area_self{
+  width:120px;
+  height:120px;
+  padding:10px;
+  background-color: #eeeeee;
+  border-radius: 20%;
+  text-align: center;
+  border: solid 1px lightgray;
+}
+.meet_contents{
+  width:90%;
+  padding:20px 20px 40px 40px;
+  border:solid 2px gray;
+  border-radius: 10px;
+  margin:0 auto;
+}
+.self_area{
+  float:left;
+  /* margin-right: 200px; */
+}
+.partner_area{
+  display: inline-block;
+  margin-left: 300px;
+}
+.panel_partner{
+  background:#EEEEEE;
+  padding:45px;
+  border-radius: 15%;
+  border:solid 2px lightgray;
+}
+btn{
+  border: 1px gray solid;
+  border-radius: 20%;
+  padding:10px;
+}
+.a{
+  color:black;
+  background-color:#FFFF88;
+  margin-right: 80px;
+  margin-left: 10px;
+}
+.b{
+  color:white;
+  background-color: #87CEFA;
+  margin-right: 10px;
+}
+h3{
+  display:inline-block;
+  margin-left: 60px;
+}
+h4{
+  float:right;
+  margin-right: 60px;
 }

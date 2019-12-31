@@ -1,9 +1,29 @@
 extends layout
+//- extends header
 
 block content
-  p(src=)
-  p aaaaa
-  -each u in users  
-    p.user_name=u.name
-    img(src="./desktop/aaa/myapp_part2/#{u.img}")
-    img(style="background-image: url(#{u.img});")
+  h3  share shareでルームメイトを見つけよう
+  h4 
+    a(href="/") edit_profile
+  .meet_contents
+    .self_area  
+      .panel_self  
+        p your profile
+        -var u = users[26]
+          p Name : #{u.name}
+          .image_area_self
+            img(src="#{u.img}")
+
+    .partner_area
+      .panel_partner
+        -var u = users[27]
+          p Name : #{u.name}
+          .image_area
+            img(src="#{u.img}")
+          p.comment  よろしく！
+          p.hobby 旅行 
+          p.profile ▽
+          btn.a
+            a(href="/") Good
+          btn.b
+            a(href="/") Next
