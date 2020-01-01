@@ -1,9 +1,0 @@
-extends layout
-
-block content
-  img(src="54471437.jpeg")
-  p aaaaa
-  -each u in users  
-    p.user_name=u.name
-    img(src="./#{u.img}")
-    img(style="background-image: url(#{u.img});")
