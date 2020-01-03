@@ -1,10 +1,20 @@
 extends layout
 
 block content
-  form(action='/signin' method='post')
-    p username
-      input(type="text" name="username")
-    p password 
-      input(type="password" name="password") 
-    
-      input(type="submit")  
+  .top_contents
+    .tittle_area
+      p#tittle.tittle(href='/') share share 
+      p.subtittle Let's share room together!
+         
+    .sign_up_box       
+      .sign_up_form
+        form(action='/signin' method='post')
+          p username
+            input(type="text" name="username")
+          p password 
+            input(type="password" name="password") 
+          
+            input(type="submit")  
+
+    p <br> <br>  <br>  <br>   <br>  <br>  <br> 
+  
