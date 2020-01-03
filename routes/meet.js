@@ -16,7 +16,27 @@ connection.query('SELECT * from users;',function(err,rows,fields){
 
 
 router.get('/',function(req,res,next){
-  res.render('meet',{users:users});
+  console.log(req.user)
+  var name =  req.user.username;
 
+  connection.query(`select * FROM users where name LIKE '${name}';` , function(err,users){
+
+  console.log(users[0])
+  var user = users[0];
+
+    connection.query(`select * FROM users;` , function(err,users){
+      console.log(users);
+
+      var targetId = user.id
+      users.some(function(v, i){
+        if (v.id==targetId) users.splice(i,1);
+      });
+
+      console.log(users);
+      return res.render('meet',{ users : users, user : user});
+
+    });
+  });
 });
+
 module.exports = router;

@@ -4,26 +4,39 @@ extends layout
 block content
   h3  share shareでルームメイトを見つけよう
   h4 
-    a(href="/") edit_profile
-  .meet_contents
+    a(href="/mypage") my_profile
+  .contents
     .self_area  
-      .panel_self  
+      .panel_self 
         p your profile
-        -var u = users[26]
-          p Name : #{u.name}
+        // login user が入ります
+        if user
+          p
+            a(href="/mypage") Name : #{user.name}
           .image_area_self
-            img(src="#{u.img}")
+            a(href="/mypage")
+              img(src="#{user.img}")
+          p area:tokyo
+        else 
+          p  ログインしましょう
+          
 
     .partner_area
       .panel_partner
-        -var u = users[27]
-          p Name : #{u.name}
-          .image_area
-            img(src="#{u.img}")
-          p.comment  よろしく！
-          p.hobby 旅行 
-          p.profile ▽
-          btn.a
-            a(href="/") Good
-          btn.b
-            a(href="/") Next
+        if users
+          each user in users
+            p Name : #{user.name}
+            .image_area
+              img(src="#{user.img}")
+            .prof_list
+              p.list  よろしく！
+              p.list 旅行 
+              p.list ▽              
+            .btn_area
+              a(href="/meet")
+                btn.a Good        
+              a(href="/meet")
+                btn.b Next
+                
+      .add_cards        
+                
