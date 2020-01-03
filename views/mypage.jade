@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h3  share shareでルームメイトを見つけよう
+  h4  
+    a(href="/meet") look for people △
+  .contents
+    .profile_area
+      h5 myprofile
+      .panel_self 
+        p
+          a(href="/profile") Name : #{user.name}
+          .image_area_self
+            a(href="/profile")
+              img(src="#{user.img}")
+      .description
+        form(action="/mypage" method='post' enctype='multipart/form-data')
+        p area: Tokyo ←クリックで変更できる様にする  
+          input.profile_input(type="text" name='area')             
+        p hobby: trip       
+          input.profile_input(type="text" name='area')   
+        p comment
+          input.profile_input(type="text" name='comment')       
+        p 希望 人数 : 2 ~ 4人     
+          input.profile_input(type="text" name='num_of_people_min')
+          input.profile_input(type="text" name='num_of_people_max')            
+        p 希望 エリア : Tokyo  
+          input.profile_input(type="text" name='expect_area')
+        p 希望 家賃負担 : 4 ~ 6 万円   
+          input.profile_input(type="text" name='price_of_rent')
+          input(type="text"  name='user_id' default="#{user.id}" style='display:none;') 
+          input(type='submit')
+        
+    .matching_people    
+      h5  Matching People 
+      p  検索条件に会う人一覧を表示
