@@ -1,49 +1,30 @@
 extends layout
 
 block content
-  div.tittle_area
-    p#tittle.tittle(href='/') share share
-    p.subtittle Let's share room together!
-      
-  div.users_box   
-    ul
-      li 
-        a(href='/users') sign up
-      li
-        a(href='/signin') log in
+  .top_contents
+    .tittle_area
+      p#tittle.tittle(href='/') share share 
+      p.subtittle Let's share room together!
         
-  div.description
-    ul
-      li 
-        a(href='/meet') share shareでroom share 
-      li 
-        a(href='/signin') share shareとは
+    .users_box   
+      ul
+        if user === undifined 
+          li 
+            a(href='/users') sign up    
+          li
+            a(href='/signin') log in
+    
+      if user === undifined 
+          h2.subtittle_sub1  
+            a(href="/meet") look for people      
+      if user 
+        h5.subtittle_sub2  
+          a(href="/meet") look for people    
+          
+    .index_list
+      ul
+        li 
+          a(href='/meet') share shareでroom share 
+        li 
+          a(href='/') share shareとは
        
-       
-  //- 
-  //- - var objs =  1;
-  //-  if objs === 1
-  //-   p hello
-  //- 
-  //- - each m in users
-  //-   ul
-  //-     li= m.email
-  //-     li= m.name
-  //- 
-       
-
-  //- -each m in memoItem
-  //-   ul
-  //-     li= m.id
-  //-     li= m.tittle
-  //- 
-  
-  //- 
-//- -document.getElementById('tittle').onclick = fucntion(){concole.log('a');}
-//- 
-//- //- - a.addEventListener('click', () => {console.log('hello');}, false);
-//- - console.log('hello');
-  //- - var target = document.getElementById('tittle');
-  //- - target.addEventListener('mouseenter',()=>{
-  //-   target.style.color = "black";
-  //- });
