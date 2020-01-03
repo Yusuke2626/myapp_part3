@@ -31,10 +31,11 @@ router.post('/', upload.single('img'), function(req,res,next){
   console.log('aaaaaaaa');
   var name = req.body.name;
   var email = req.body.email;
+  var password = req.body.password;
   var img = ('images/uploads/'+req.file.originalname);
 
 
-  var post = {name:name,email:email,img:img};
+  var post = {name:name,email:email,img:img,password:password};
   var sql = `INSERT INTO users SET ?`;
   console.log(post);
 

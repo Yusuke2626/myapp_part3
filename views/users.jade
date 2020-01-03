@@ -1,14 +1,26 @@
 extends layout
 
 block content
-  p.tittle ユーザー情報
+    .top_contents
+      .tittle_area
+        p#tittle.tittle(href='/') share share 
+        p.subtittle Let's share room together!
+           
+      .sign_up_box       
+        .sign_up_form
+          form(action='/users' method='post' enctype='multipart/form-data')
+            p ユーザー名を入力
+              input(type='text' name='name')
+            p emailを入力
+              input(type='text' name='email')
+            p passwordを入力
+              input(type='password' name='password')
+            p 画像を登録
+              input(type='file' name='img')  
+            input(type='submit')
+       
+      p <br> 
+        
+
   
   
-  form(action='/users' method='post' enctype='multipart/form-data')
-    p ユーザー名を入力
-      input(type='text' name='name')
-    p emailを入力
-      input(type='text' name='email')
-    p 画像を登録
-      input(type='file' name='img')  
-    input(type='submit')
