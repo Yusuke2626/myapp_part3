@@ -30,7 +30,9 @@ block content
           input.profile_input(type="text" name='price_of_rent')
           input(type="text"  name='user_id' default="#{user.id}" style='display:none;') 
           input(type='submit')
-        
+    
     .matching_people    
       h5  Matching People 
       p  検索条件に会う人一覧を表示
+  .logout_area
+    a(href='/logout') logout      
