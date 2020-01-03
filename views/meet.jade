@@ -22,21 +22,33 @@ block content
           
 
     .partner_area
-      .panel_partner
-        if users
-          each user in users
-            p Name : #{user.name}
-            .image_area
-              img(src="#{user.img}")
-            .prof_list
-              p.list  よろしく！
-              p.list 旅行 
-              p.list ▽              
-            .btn_area
-              a(href="/meet")
-                btn.a Good        
-              a(href="/meet")
-                btn.b Next
+      if users
+        -var n = 0
+        -var index_num = 999
+        each user in users
+          -var num = index_num - n
+          div(class="panel_partner" style="z-index:#{num};")
+                p Name : #{user.name}  #{n}
+                .image_area
+                  img(src="#{user.img}")
+                .prof_list
+                  p.list  よろしく！
+                  p.list 旅行 
+                  p.list ▽              
+                .btn_area
+                  form(action='meet/like' method='post' )
+                    input(type='hidden' name='like_user_id' value="#{user.id}")
+                    input(type='submit' value='good').a     
+                     
+                  form(action='meet/next' method='post' )
+                    input(type='hidden' name='next_user_id' value="#{user.id}")
+                    input(type='submit' value='next').b     
+                    
+            -n= n+1
+      
                 
-      .add_cards        
-                
+      .add_cards   
+        p No User
+             
+    p <br><br><br><br><br><br><br><br><br><br><br><br>
+    p <br><br><br><br><br><br><br><br><br><br><br><br><br>
