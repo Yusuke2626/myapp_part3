@@ -137,15 +137,14 @@ router.post('/next',function(req,res,next){
     var post = {user_id:user_id,next_user:next_user};
     var sql = `INSERT INTO nexts SET ?`;
 
-
     console.log('next_user');
     console.log(next_user);
+
 
     connection.query(sql, post, function(err,results,fields){
 
       console.log(sql);
       console.log(post);
-
       if(err) throw err;
 
     });
