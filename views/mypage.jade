@@ -9,30 +9,37 @@ block content
       h5 myprofile
       .panel_self 
         p
-          a(href="/profile") Name : #{user.name}
+          a(href="/profile") Name : #{user.name} 
           .image_area_self
             a(href="/profile")
               img(src="#{user.img}")
       .description
-        form(action="/mypage" method='post' enctype='multipart/form-data')
-        p area: Tokyo ←クリックで変更できる様にする  
-          input.profile_input(type="text" name='area')             
-        p hobby: trip       
-          input.profile_input(type="text" name='area')   
-        p comment
-          input.profile_input(type="text" name='comment')       
-        p 希望 人数 : 2 ~ 4人     
-          input.profile_input(type="text" name='num_of_people_min')
-          input.profile_input(type="text" name='num_of_people_max')            
-        p 希望 エリア : Tokyo  
-          input.profile_input(type="text" name='expect_area')
-        p 希望 家賃負担 : 4 ~ 6 万円   
-          input.profile_input(type="text" name='price_of_rent')
-          input(type="text"  name='user_id' default="#{user.id}" style='display:none;') 
+        form(action="/mypage" method='post')
+          p area: #{userProfile1.area} ←クリックで変更できる様にする  
+          input.profile_input(type="text" name='area' value="#{userProfile1.area}")             
+          p hobby: #{userProfile1.hobby}       
+          input.profile_input(type="text" name='hobby' value="#{userProfile1.hobby}")   
+          p comment  #{userProfile1.comment} 
+          input.profile_input(type="text" name='comment' value="#{userProfile1.comment}")       
+          p 希望 人数 :  #{userProfile1.num_of_people_min}  ~  #{userProfile1.num_of_people_max} 人     
+          input.profile_input(type="text" name='num_of_people_min' value=' #{userProfile1.num_of_people_min}')
+          input.profile_input(type="text" name='num_of_people_max' value=' #{userProfile1.num_of_people_max}')            
+          p 希望 エリア :  #{userProfile1.expect_area}  
+          input.profile_input(type="text" name='expect_area'  value="#{userProfile1.expect_area}")
+          p 希望 家賃負担 :  #{userProfile1.price_of_rent}  万円ぐらい   
+          input.profile_input(type="text" name='price_of_rent' value='')
+          input(type="text"  name='user_id' value="#{user.id}" style='display:none;') 
           input(type='submit')
     
     .matching_people    
-      h5  Matching People 
-      p  検索条件に会う人一覧を表示
+      h5  Matching People
+        .matching_people_block
+          each people in meet_people
+            a(href="/mypage")
+              img.people_img(src='#{people.img}') 
+          
+      //- p  検索条件に会う人一覧を表示
+        
+      
   .logout_area
     a(href='/logout') logout      
