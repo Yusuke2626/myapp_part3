@@ -21,52 +21,24 @@ var connection = mysql.createConnection({
 
 connection.query('SELECT * from users;',function(err,rows,fields){
   if(err) throw err
-
   users = rows
-
-
 })
-// router.use(passport.initialize());
-// router.use(passport.session());
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
   console.log(req.user)
-  // if(req.user){
-    res.render("index", { user : req.user});
-  // }else{
-  //   res.render("index", {});
-  // }
-});
-  // res.render('index', {user:req.user});
-  // router.get('/signin', function(req, res) {
-  //     res.render('login', { user : req.user });
-  // });
 
-  // router.post('/signin', passport.authenticate('local',
-  //     {successRedirect: '/',
-  //     failureRedirect: '/signin',
-  //     session: true}));
+  connection.query('delete FROM nexts ;' , function(error,nexts){
+    if(error) throw error;
+    console.log('delete next');
+  });
+
+    res.render("index", { user : req.user});
+});
+
 
   router.get('/logout', function(req, res) {
       req.logout();
       res.redirect('/');
   });
-
-//
-// router.get('/signin', function(req, res) {
-//   console.log(req.user);
-//     res.render('/signin', {user: req.user});
-// });
-// //
-// router.post('/signin', passport.authenticate('local',
-//   {successRedirect: '/',
-//    failureRedirect: '/signin',
-//    session: false}
-//  ));
-// //
-//  router.get('/signout', function(req, res){
-//    req.logout();
-//   res.redirect('/');
-// });
 
 module.exports = router;
