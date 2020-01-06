@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h3  #{partner.name}さんにメッセージしよう
+  h4  
+    a(href="/meet") look for people △
+  .contents
+    .partner_profile_area
+      p #{partner.name} 
+      img.people_img(src="#{partner.img}")
+      p area: #{profile.area}
+      if profile.hobby === null
+        p hobby: 
+      else  
+        p hobby: #{profile.hobby}
+      if profile.hobby === null  
+        p comment:
+      else  
+        p comment: #{profile.comment}
+
+    .message_area 
+      each message in messages
+        p #{message.content}
+      
+      form(action="/partner",method='post')
+        input.message_input(type="text",name='text')
+        input(name='user_id' value="#{partner.id}"  style='display:none;')
+        input.message_submit(type='submit')
+      
+    p <br><br>  
+    
