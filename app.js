@@ -22,8 +22,9 @@ var topsRouter = require('./routes/tops');
 var newRouter = require     ('./routes/new');
 var matchingRouter = require('./routes/meet');
 var mypageRouter = require     ('./routes/mypage');
-var new_profileRouter = require('./routes/new_profile');
+// var new_profileRouter = require('./routes/new_profile');
 var signinRouter = require('./routes/signin');
+var partnerRouter = require('./routes/partner');
 
 var passport = require('passport');
 var bodyParser = require('body-parser');
@@ -94,8 +95,9 @@ app.use('/tops', topsRouter);
 app.use('/new', newRouter);
 app.use('/meet',matchingRouter);
 app.use('/mypage', mypageRouter);
-app.use('/user/new_profile', usersRouter);
-app.use('/signin',signinRouter);
+// app.use('/user/new_profile', usersRouter);
+app.use('/signin', signinRouter);
+app.use('/partner', partnerRouter);
 
 
 app.use(function(req, res, next) {
