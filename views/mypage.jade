@@ -35,8 +35,12 @@ block content
       h5  Matching People
         .matching_people_block
           each people in meet_people
-            a(href="/mypage")
-              img.people_img(src='#{people.img}') 
+            form(action='/partner' name='form1' method='post')
+              input(type='text' name='user_id' value='#{people.id}' style='display:none;')
+              img.people_img(src='#{people.img}')   
+              p 画像クリックで遷移する様にする
+              input(type='submit' value='#{people.name}') 
+              
           
       //- p  検索条件に会う人一覧を表示
         
