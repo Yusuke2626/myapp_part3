@@ -29,17 +29,16 @@ block content
           p 希望 家賃負担 :  #{userProfile1.price_of_rent}  万円ぐらい   
           input.profile_input(type="text" name='price_of_rent' value='')
           input(type="text"  name='user_id' value="#{user.id}" style='display:none;') 
-          input(type='submit')
+          input.profile_submit(type='submit')
     
     .matching_people    
       h5  Matching People
         .matching_people_block
           each people in meet_people
-            form(action='/partner' name='form1' method='post')
+            form.meet_people_form(action='/partner' name='form1' method='post')
               input(type='text' name='user_id' value='#{people.id}' style='display:none;')
               img.people_img(src='#{people.img}')   
-              p 画像クリックで遷移する様にする
-              input(type='submit' value='#{people.name}') 
+              input.matching_people_submit(type='submit' value='#{people.name}') 
               
           
       //- p  検索条件に会う人一覧を表示
