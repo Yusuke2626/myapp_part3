@@ -54,8 +54,6 @@ router.get('/', function(req, res, next) {
         connection.query(`select * FROM users where id in (${meet_people});` ,function(err,meet_people){
           console.log('meet_people',meet_people);
 
-
-
   /////user_profileがなければ作成////////////////////
           connection.query(`select * FROM userProfile1 where user_id= ${user.id};` ,function(err,userProfile1){
             if (userProfile1.length !== 0){
@@ -119,6 +117,13 @@ router.get('/logout', function(req, res, next) {
   req.logout()
   res.redirect('/')
 });
+
+router.post('/partner', function(req, res, next) {
+  console.log('hello');
+  // res.redirect('/')
+  res.render("partner", {user:user,partner:partner});
+})
+
 
 
 
