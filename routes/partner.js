@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
         var partner = users[0];
         connection.query(`select * FROM userProfile1 where user_id = '${partner_id}';` , function(err,profile){
           var profile = profile[0];
-          connection.query(`select * FROM messages where user_id = '${user.id}' or '${partner_id}';` , function(err,messages){
+          connection.query(`select * FROM messages where user_id = '${user.id}' or '${partner_id}' ORDER by id DESC;` , function(err,messages){
             var messages = messages
             console.log('messages',messages)
 
@@ -51,7 +51,7 @@ router.post('/', function(req, res, next) {
           var profile = profile[0];
           connection.query(`select * FROM userProfile1 where user_id = '${partner_id}';` , function(err,profile){
             var profile = profile[0];
-            connection.query(`select * FROM messages where user_id = ${user.id} or ${partner_id};` , function(err,messages){
+            connection.query(`select * FROM messages where user_id = ${user.id} or ${partner_id} ORDER by id DESC;` , function(err,messages){
               var messages = messages
               console.log(user.id);
               console.log(partner_id);
