@@ -1,47 +1,87 @@
-import React from "react";
+// import React from "react";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { BrowserRouter, Route } from "react-router-dom";
+import Navbar from './Navbar';
+import About from './About';
+import Home from './App';
+import Main_box from './main_box';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { users:[] };
-    // this.state = { likes:[] };
-
-
-    fetch("http://localhost:3000/tops")
-      .then(response => response.json())
-      .then(users => this.setState({ users }));
-
   }
 
   render() {
     return (
-      <div>
-        <h1>hello,world</h1>
-        <h3>users</h3>
-        <ul>
+      <div className="top_contents">
+        <div className='tittle_area'>
+          <h2 className='tittle'> share share </h2>
+          {console.log('hello')}
+          <p className='subtittle'>
+            Let's share room together!
+          </p>
+          <Main_box />
 
-          {console.log(this.state.users)}
-          {this.state.users.filter(user => user.name).map(user => (
-            <li>
-              {console.log(user)}
-              <h2>{user.id}</h2>
-              <p>{user.appointedto}</p>
-              <p>{user.duedate}</p>
-            </li>
-          ))}
-        </ul>
-        <h3>likes</h3>
-        <ul>
-          {this.state.users.filter(user => user.like_user).map(user => (
-            <li>
-              {console.log(user)}
-              <h2>{user.id}</h2>
-              <p>{user.appointedto}</p>
-              <p>{user.duedate}</p>
-            </li>
-          ))}
-        </ul>
+        </div>
       </div>
+      // <div>
+      //   <Router>
+      //     <div>
+      //        <Navbar /><hr/>
+      //        <Route path='/About' component={About}/>
+      //        <Route path='/' component={Home}/>
+      //
+      //     </div>
+      //   </Router>
+      //
+      //
+      // </div>
     );
   }
 }
+// import React from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+//
+//
+// function App() {
+//   return (
+//     <div className="top_contents">
+//         <h2> share share </h2>
+//         {console.log('hello')}
+//         <p>
+//           aaaaaEdit and save to reload.aaaa
+//         </p>
+//
+//
+//
+//     </div>
+//   );
+// }
+//
+// export default App;
+// import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import Navbar from './Navbar';
+// import About from './About';
+// import Home from './Home';
+//
+// class App extends Component {
+//   render() {
+//     return (
+//       <div className="App">
+//         <Router>
+//           <div>
+//             <Navbar /><hr/>
+//             <Route exact path='/' component={Home}/>
+//             <Route path='/About' component={About}/>
+//           </div>
+//         </Router>
+//       </div>
+//     );
+//   }
+// }
+//
+// export default App;
