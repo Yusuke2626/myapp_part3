@@ -17,7 +17,7 @@ export default class App extends React.Component {
     return (
       <div className="top_contents">
         <div className='tittle_area'>
-          <h2 className='tittle'> share share </h2>
+          <h2 className='tittle'><a href='/home'> share share </a></h2>
           {console.log('hello')}
           <p className='subtittle'>
             Let's share room together!
@@ -26,18 +26,7 @@ export default class App extends React.Component {
 
         </div>
       </div>
-      // <div>
-      //   <Router>
-      //     <div>
-      //        <Navbar /><hr/>
-      //        <Route path='/About' component={About}/>
-      //        <Route path='/' component={Home}/>
-      //
-      //     </div>
-      //   </Router>
-      //
-      //
-      // </div>
+
     );
   }
 }
