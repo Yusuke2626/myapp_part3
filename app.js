@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/_admin',express.static(path.join(__dirname, 'client/build')));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -98,6 +99,9 @@ app.use('/mypage', mypageRouter);
 // app.use('/user/new_profile', usersRouter);
 app.use('/signin', signinRouter);
 app.use('/partner', partnerRouter);
+app.use('/home',express.static(path.join(__dirname, 'client/build')));
+
+// app.use('/users', usersRouter);
 
 
 app.use(function(req, res, next) {
@@ -112,5 +116,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const port = process.env.PORT || 3001;
+app.listen(port,()=>console.log(`Server running on port ${port}`));
 
 module.exports = app;
