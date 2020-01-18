@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 import SignInForm from './signInForm';
 import SignUpForm from './signUpForm';
+import Navbar from './Navbar';
 
 class App extends React.Component{
   constructor(props) {
@@ -30,7 +34,9 @@ class App extends React.Component{
     this.setState({class:name,ulclass:hidden,signUpFormOpen:true});
     console.log(this.state.class,this.state.ulclass);
   }
-
+  clickLookforPeople(){
+    return this.props.clickLookforPeople();
+  }
 
   render(){
     console.log(this.state.ulclass);
@@ -42,7 +48,12 @@ class App extends React.Component{
       return(
         <div>
           <div className={this.state.class}>
-            <h5 className='subtittle_sub2'>look for people</h5>
+            <h5 className='subtittle_sub2'>
+              <Router>
+                <Link to='/meet' onClick={()=>{this.clickLookforPeople();}}>look for people</Link>
+                <Route path='/meet' component={Navbar}/>
+              </Router>
+            </h5>
           </div>
           <div className ='index_list'>
             <ul>
@@ -53,6 +64,13 @@ class App extends React.Component{
                 <a href='/'> share shareとは</a>
               </li>
             </ul>
+            <Router>
+              <div>
+
+                  <Route exact path='/' component={signInForm}/>
+                  <Route path='/About' component={signInForm}/>
+              </div>
+            </Router>
           </div>
         </div>
       )
