@@ -1,16 +1,17 @@
 // import React from "react";
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import { BrowserRouter, Route } from "react-router-dom";
 
 import Main_box from './main_box';
+import MyProfile from './myProfile';
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {top_contentsOpen:true}
+    this.state = {top_contentsOpen:true,
+                  myProfileOpen:false}
 
     fetch("http://localhost:3000/tops")
       .then(response => response.json())
@@ -20,9 +21,13 @@ export default class App extends React.Component {
   clickFuncTopContents(){
     this.setState({top_contentsOpen:false});
   }
+  handleClick(){
+    this.setState({myProfileOpen:true})
+  }
 
   render() {
-    const user = this.state.user;
+    var user = this.state.user;
+    var cursorstyle = {cursor:'pointer'};
     const top_contents = (<div className="top_contents" >
                             <div className='tittle_area'>
                               <h2 className='tittle'><a href='/home'> share share </a></h2>
@@ -40,72 +45,75 @@ export default class App extends React.Component {
           {top_contents}
         </div>
       );
-    }else{
+    }else if(this.state.myProfileOpen){
       return(
         <div>
           <h3>share shareでルームメイトを見つけよう </h3>
-          <h4> <a href="/mypage"> my_profile </a></h4>
-          <div className='contents' >
-            <self_area>
-              <panel_self>
+          <h4 style={cursorstyle} onClick={()=>{this.handleClick()}}> my_profile</h4>
+          <div className='contents2' >
+            < MyProfile />
+          </div>
+        </div>
+    );
+    }else{
+
+      console.log('root_login_user',user[0]);
+      console.log('root_login_user_name',user[0].name);
+      console.log('root_login_user_profile_area',user[1].area);
+      console.log('all_user',user);
+
+      var users = user
+      var profile = user[1];
+      var user = user[0];
+
+      var users = users.filter(n => n !== users[0] && n!==users[1]);
+      var users = users.filter(n => n.id !== user.id)
+      var num = 0;
+      var index_num = 999;
+      var partner_block = [];
+
+      for(var u of users){var current_num = index_num - num;
+                          partner_block.push(
+                          <div className='panel_partner' style={{zIndex:{current_num}}}>
+                            <p> Name: {u.name}</p>
+                            <div className='image_area'>
+                              <img src={u.img}/>
+                            </div>
+                            <div className='prof_list'>
+                              <p className='list'> よろしく </p>
+                              <p className='list'> 旅行 </p>
+                              <p className='list'> ▽ </p>
+                            </div>
+                            <div className='btn_area'>
+                            </div>
+                          </div>)
+                          var num = num+1;}
+
+      return(
+        <div>
+          <h3>share shareでルームメイトを見つけよう </h3>
+          <h4 style={cursorstyle} onClick={()=>{this.handleClick()}}> my_profile</h4>
+          <div className='contents2' >
+            <div className='self_area'>
+              <div className='panel_self'>
+                <p> your profile</p>
                 <p>Name:{user.name}</p>
 
-                <image_area_self>
-                  <img src={user.img}/>
+                <div className='image_area_self'>
+                  <img className='my_img' src={user.img}/>
                 </div>
-                <p> area:tokyo </p>
-              </panel_self>
-            </self_area>
-            <partner_area>
-
-            </partner_area>
+                <p> area:{profile.area}</p>
+              </div>
+            </div>
+            <div className='partner_area'>
+            {partner_block}
+              <div className='add_cards'>
+                <p>No User</p>
+              </div>
+            </div>
           </div>
         </div>
       );
     }
   }
 }
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-//
-//
-// function App() {
-//   return (
-//     <div className="top_contents">
-//         <h2> share share </h2>
-//         {console.log('hello')}
-//         <p>
-//           aaaaaEdit and save to reload.aaaa
-//         </p>
-//
-//
-//
-//     </div>
-//   );
-// }
-//
-// export default App;
-// import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import Navbar from './Navbar';
-// import About from './About';
-// import Home from './Home';
-//
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <Router>
-//           <div>
-//             <Navbar /><hr/>
-//             <Route exact path='/' component={Home}/>
-//             <Route path='/About' component={About}/>
-//           </div>
-//         </Router>
-//       </div>
-//     );
-//   }
-// }
-//
-// export default App;
