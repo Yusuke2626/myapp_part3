@@ -36,11 +36,13 @@ class App extends React.Component{
   }
   clickLookforPeople(){
     return this.props.clickLookforPeople();
+
   }
 
   render(){
     console.log(this.state.ulclass);
     const user = this.state.user;
+    console.log('main_login_user',user);
     const signInForm  =   < SignInForm />;
     const signUpForm  =   < SignUpForm />;
 
@@ -50,15 +52,14 @@ class App extends React.Component{
           <div className={this.state.class}>
             <h5 className='subtittle_sub2'>
               <Router>
-                <Link to='/meet' onClick={()=>{this.clickLookforPeople();}}>look for people</Link>
-                <Route path='/meet' component={Navbar}/>
+                <Link to='/meeting' onClick={()=>{this.clickLookforPeople();}}>look for people</Link>
               </Router>
             </h5>
           </div>
           <div className ='index_list'>
             <ul>
               <li>
-                <a href='/meet'> share shareでroom share</a>
+                <a href='/meeting'> share shareでroom share</a>
               </li>
               <li>
                 <a href='/'> share shareとは</a>
@@ -66,7 +67,6 @@ class App extends React.Component{
             </ul>
             <Router>
               <div>
-
                   <Route exact path='/' component={signInForm}/>
                   <Route path='/About' component={signInForm}/>
               </div>
@@ -103,7 +103,7 @@ class App extends React.Component{
             <ul>
               {console.log(this.state.ulclass)}
               <li>
-                <a href='/meet'> share shareでroom share</a>
+                <a href='/meeting'> share shareでroom share</a>
               </li>
               <li>
                 <a href='/'> share shareとは</a>
@@ -125,7 +125,7 @@ class App extends React.Component{
             <ul>
             {console.log(this.state.ulclass)}
               <li>
-                <a href='/meet'>share shareでroom share</a>
+                <a href='/meeting'>share shareでroom share</a>
               </li>
               <li>
                 <a href='/'>share shareとは</a>
