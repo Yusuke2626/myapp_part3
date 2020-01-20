@@ -1,21 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 
-function App() {
+class App extends React.Component{
+render(){
   return (
     <div className="top_contents">
-        <h2> share share </h2>
+      <div className='tittle_area'>
+        <h2 className='tittle'><a href='/home'> share share </a></h2>
         {console.log('hello')}
-        <p>
-          aaaaaEdit and save to reload.aaaa
+        <p className='subtittle'>
+          Let's share room together!
         </p>
 
+        <main_box />
 
-
+      </div>
     </div>
   );
-}
+}}
 
 export default App;
