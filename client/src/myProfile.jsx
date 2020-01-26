@@ -5,19 +5,61 @@ import './App.css';
 class App extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {data:'nothing'};
+    this.state = {data:'nothing',
+                  inputArea:false,
+                  area:'area',
+                  hobby:'hobby',
+                  rent:'rent',
+                  expect_area:'area',
+                  display:'none',
+                  num:'num'};
 
     fetch("http://localhost:3000/mypage")
       .then(response => response.json())
       .then(data => this.setState({data}));
     }
 
+    handleClick(n){
+      this.setState({num:n});
+      console.log(this.state.num);
+    }
+    areaChange(e){
+      var inputValue = e.target.value;
+      this.setState({area:inputValue});
 
+    }
+    hobbyChange(e){
+      var inputValue = e.target.value;
+      this.setState({hobby:inputValue});
+    }
+    postMyprofile(){
+      fetch('http://localhost:3000/mypage',{
+        method: 'POST',
+        headers:{
+          Accept: 'application/json',
+          'Content-Type':'application/json',
+        },
+         body: JSON.stringify({
+          area:this.state.area,
+          hobby:this.state.hobby,
+
+          user_id:this.state.data[0].id
+        }),
+      },
+      fetch("http://localhost:3000/mypage")
+        .then(response => response.json())
+        .then(data => this.setState({data}))
+      )
+
+      console.log('ok');
+
+    };
 
   render(){
     var user = this.state.data[0];
     var profile = this.state.data[1];
     var meet_people = this.state.data[2];
+
 
     console.log(meet_people);
     console.log('myProfile',profile);
@@ -29,6 +71,40 @@ class App extends React.Component{
         <img className='people_img' src={u.img} />
       )
     }
+    var inputStyle = this.state.display;
+    console.log('inputStyle', inputStyle);
+
+    var num = this.state.num;
+    console.log(num);
+
+    var inputName = `this.state.` +this.state.inputName;
+    console.log(inputName);
+    var inputArea = this.state.inputArea;
+
+    /////mapで作る////////
+    var inputAreaBlock = (<div><input style={{margin:5, width:200}} value={this.state.area}
+                            onChange={(e)=>{this.areaChange(e)}}></input>
+                            <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
+    var inputAreaBlock2 = (<div><input style={{margin:5, width:200}} value={this.state.hobby}
+                            onChange={(e)=>{this.hobbyChange(e)}}></input>
+                            <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
+    var inputAreaBlock3 = (<div><input style={{margin:5, width:200}} value={this.state.comment}
+                            onChange={(e)=>{this.hobbyChange(e)}}></input>
+                            <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
+    var inputAreaBlock4 = (<div><input style={{margin:5, width:200}} value={this.state.hobby}
+                            onChange={(e)=>{this.hobbyChange(e)}}></input>
+                            <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
+    var inputAreaBlock5 = (<div><input style={{margin:5, width:200}} value={this.state.hobby}
+                            onChange={(e)=>{this.hobbyChange(e)}}></input>
+                            <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
+    var inputAreaBlock6 = (<div><input style={{margin:5, width:200}} value={this.state.expect_area}
+                            onChange={(e)=>{this.hobbyChange(e)}}></input>
+                            <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
+
+
+
+
+
 
     return(
     <div>
@@ -41,12 +117,24 @@ class App extends React.Component{
           </div>
         </div>
         <div className='description'>
-          {profile.area? <p>area:{profile.area}</p> : <p>area: </p> }
-          {profile.hobby? <p>hobby:{profile.hoby}</p>   : <p>hobby: </p>}
-          {profile.comment? <p>comment:{profile.comment}</p>  : <p>comment:</p>}
-          {profile.num_of_people_min? <p> 希望 人数 : {profile.num_of_people_min} ~ {profile.num_of_people_max}</p>  : <p> 希望 人数 :  ~ </p>}
-          {profile.expect_area? <p> 希望 エリア :  {profile.expect_area}  </p> : <p> 希望 エリア :   </p>}
-          {profile.price_of_rent? <p> 希望 家賃負担 :  {profile.price_of_rent}  </p> :  <p> 希望 家賃負担 : </p>}
+            <p style={{margin:0,fontSize:6}}>クリックで編集</p>
+            {profile.area? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(1)}}>area:{profile.area}</p> : <p onClick={()=>{this.handleClick(1)}}>area: areaを入力 </p> }
+            {num===1? <div>{inputAreaBlock}</div> : <div></div> }
+
+            {profile.hobby? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(2)}}>hobby:{profile.hobby}</p>   : <p onClick={()=>{this.handleClick(2)}}>hobby: hobbyを入力</p>}
+            {num===2? <div>{inputAreaBlock2}</div> : <div></div> }
+
+            {profile.comment? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(3)}}>comment:{profile.comment}</p>  : <p onClick={()=>{this.handleClick(3)}}>comment: commentを入力</p>}
+            {num===3? <div>{inputAreaBlock}</div> : <div></div> }
+
+            {profile.num_of_people_min? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(4)}}> 希望 人数 : {profile.num_of_people_min} ~ {profile.num_of_people_max}</p>  : <p onClick={()=>{this.handleClick(4)}}> 希望 人数 :  ~ </p>}
+            {num===4? <div>{inputAreaBlock}</div> : <div></div> }
+
+            {profile.expect_area? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(5)}}> 希望 エリア :  {profile.expect_area}  </p> : <p onClick={()=>{this.handleClick(5)}}> 希望 エリア :   </p>}
+            {num===5? <div>{inputAreaBlock}</div> : <div></div> }
+
+            {profile.price_of_rent? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(6)}}> 希望 家賃負担 :  {profile.price_of_rent}  </p> :  <p onClick={()=>{this.handleClick(6)}}> 希望 家賃負担 : </p>}
+            {num===6? <div>{inputAreaBlock}</div> : <div></div> }
         </div>
       </div>
       <div className='matching_people'>
