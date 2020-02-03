@@ -60,7 +60,15 @@ router.get('/', function(req, res, next) {
               console.log('userProfile1');
               console.log(userProfile1);
               var userProfile1 = userProfile1[0]
-            return res.render("mypage", {user:user,userProfile1:userProfile1,meet_people:meet_people});
+            // return res.render("mypage", {user:user,userProfile1:userProfile1,meet_people:meet_people});
+
+            var data = [];
+            data.push(user);
+            data.push(userProfile1);
+            data.push(meet_people);
+            
+            console.log('data',data);
+            return res.json(data);
             }
             else
             {
@@ -70,7 +78,8 @@ router.get('/', function(req, res, next) {
               connection.query(sql,post,function(error,results,fields){
                 if(error) throw error;
                 console.log('else')
-                return res.render("mypage", {user:user,userProfile1:userProfile1,meet_people:meet_people});
+                // return res.render("mypage", {user:user,userProfile1:userProfile1,meet_people:meet_people});
+                return res.json(user);
               });
             }
           });
@@ -86,24 +95,21 @@ router.post('/', function(req, res, next){
   var hobby = req.body.hobby;
   var comment = req.body.comment;
 
-  var num_of_people_min = req.body.num_of_people_min;
-  var num_of_people_max = req.body.num_of_people_max;
+  if (req.body.num_of_people_min !== ''){
+    var num_of_people_min = req.body.num_of_people_min;}
+  if (req.body.num_of_people_max !== ''){
+    var num_of_people_max = req.body.num_of_people_max;}
+  if (req.body.expect_area !== ''){
+    var expect_area = req.body.expect_area;}
+  if (req.body.price_of_rent !==''){
+    var price_of_rent = req.body.price_of_rent;}
+  if (req.body.user_id !== ''){
+    var user_id = req.body.user_id;}
 
-  var expect_area = req.body.expect_area;
-  var price_of_rent = req.body.price_of_rent;
-  var user_id = req.body.user_id;
-
-  if (num_of_people_min === '' || num_of_people_max ==='' || price_of_rent ===''){
-    var post = {area:area,hobby:hobby,
-                expect_area:expect_area,
-                comment:comment};
-
-  }
-  else{
     var post = {area:area,hobby:hobby,num_of_people_min:num_of_people_min,
                 num_of_people_max:num_of_people_max,expect_area:expect_area,
                 price_of_rent:price_of_rent,comment:comment};
-        };
+
 
   var sql = `update userProfile1 SET ? where user_id=${user_id}`;
 
