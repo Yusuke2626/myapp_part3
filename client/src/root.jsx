@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.state = {top_contentsOpen:true,
                   myProfileOpen:false}
 
-    fetch("http://localhost:3000/tops")
+    fetch("http://localhost:3000/tops",{mode: 'cors'})
       .then(response => response.json())
       .then(user => this.setState({user}));
   }
