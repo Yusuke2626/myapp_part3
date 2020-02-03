@@ -18,6 +18,7 @@ class App extends React.Component{
     post_signin(){
      fetch('http://localhost:3000/signin', {
        method: 'POST',
+       mode: 'cors' ,
        headers: {
          Accept: 'application/json',
          'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ class App extends React.Component{
      });
      console.log('ok');
      window.location="/home";
-     window.location="/home";
+     // window.location="/home";
    };
 
 
@@ -42,7 +43,6 @@ class App extends React.Component{
     return(
     <div>
       <div className='sign_up_form' >
-
           <p> username</p>
           <input type="text" name="username" value={this.state.username}
                       onChange={(e) => this.setState({username: e.target.value})}/>
@@ -51,8 +51,6 @@ class App extends React.Component{
                       onChange={(e) => this.setState({password: e.target.value})}/>
 
           <button onClick={()=> {this.post_signin()}}> send</button>
-
-
       </div>
     </div>
     )
