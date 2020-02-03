@@ -20,7 +20,7 @@ class App extends React.Component{
                   signUpFormOpen:false
                 };
 
-    fetch("http://localhost:3000/tops")
+    fetch("http://localhost:3000/tops",{mode: 'cors' ,credentials: 'include'})
       .then(response => response.json())
       .then(user => this.setState({user}));
 
