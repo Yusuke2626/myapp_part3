@@ -357,6 +357,9 @@ input[type="submit"] {
     box-shadow: 2px 5px 5px  lightgray;
     cursor: pointer;
 }
+.message_submit:hover{
+  box-shadow: 1px 2px 5px  gray;
+}
 .matching_people_submit
 {
   -webkit-appearance: none;
@@ -367,19 +370,15 @@ input[type="submit"] {
   /* border: none; */
   outline: none;
   background: #eeeeee;
-
-  /* right:225px;
-  position:absolute;
-  bottom:28px;
-  margin:0 0 35px 40px; */
-  /* padding:20px; */
-  /* line-height: 30px; */
   width:50px;
   height:35px;
   /* border-radius: 50%; */
   border: solid 2px #eeeeee;
   box-shadow: 2px 5px 5px  lightgray;
   cursor: pointer;
+}
+.matching_people_submit:hover{
+  box-shadow: 0.2px 0.1px 7px  gray;
 }
 .meet_people_form{
   display:inline-block;
@@ -389,4 +388,14 @@ input[type="submit"] {
 .profile_submit{
   border:0.5px gray solid;
   border-radius: 5px;
+}
+.num_of_people{
+  width:80px;
+  display: inline-block;
+  margin:10px 20px ;
+}
+.price_of_rent{
+  width:240px;
+  margin: 5px 10px 5px 3px;
+  display: inline-block;
 }
