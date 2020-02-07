@@ -66,7 +66,7 @@ class App extends React.Component{
     var meet_people_block = [];
     for(var u of meet_people){
       meet_people_block.push(
-        <img className='people_img' src={u.img} />
+        <a href='/home'><img className='people_img' src={u.img} /></a>
       )
     }
     var inputStyle = this.state.display;
@@ -116,22 +116,22 @@ class App extends React.Component{
         </div>
         <div className='description'>
             <p style={{margin:0,fontSize:6}}>クリックで編集</p>
-            {profile.area? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(1)}}>area:{profile.area}</p> : <p onClick={()=>{this.handleClick(1)}}>area: areaを入力 </p> }
+            {profile.area? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(1)}}>area:{profile.area}</p> : <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(1)}}>area: areaを入力 </p> }
             {num===1? <div>{inputAreaBlock}</div> : <div></div> }
 
-            {profile.hobby? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(2)}}>hobby:{profile.hobby}</p>   : <p onClick={()=>{this.handleClick(2)}}>hobby: hobbyを入力</p>}
+            {profile.hobby? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(2)}}>hobby:{profile.hobby}</p>   : <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(2)}}>hobby: hobbyを入力</p>}
             {num===2? <div>{inputAreaBlock2}</div> : <div></div> }
 
-            {profile.comment? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(3)}}>comment:{profile.comment}</p>  : <p onClick={()=>{this.handleClick(3)}}>comment: commentを入力</p>}
+            {profile.comment? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(3)}}>comment:{profile.comment}</p>  : <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(3)}}>comment: commentを入力</p>}
             {num===3? <div>{inputAreaBlock}</div> : <div></div> }
 
-            {profile.num_of_people_min? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(4)}}> 希望 人数 : {profile.num_of_people_min} ~ {profile.num_of_people_max}</p>  : <p onClick={()=>{this.handleClick(4)}}> 希望 人数 :  ~ </p>}
+            {profile.num_of_people_min? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(4)}}> 希望 人数 : {profile.num_of_people_min} ~ {profile.num_of_people_max}</p>  : <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(4)}}> 希望 人数 :  ~ </p>}
             {num===4? <div>{inputAreaBlock}</div> : <div></div> }
 
-            {profile.expect_area? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(5)}}> 希望 エリア :  {profile.expect_area}  </p> : <p onClick={()=>{this.handleClick(5)}}> 希望 エリア :   </p>}
+            {profile.expect_area? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(5)}}> 希望 エリア :  {profile.expect_area}  </p> : <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(5)}}> 希望 エリア :   </p>}
             {num===5? <div>{inputAreaBlock}</div> : <div></div> }
 
-            {profile.price_of_rent? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(6)}}> 希望 家賃負担 :  {profile.price_of_rent}  </p> :  <p onClick={()=>{this.handleClick(6)}}> 希望 家賃負担 : </p>}
+            {profile.price_of_rent? <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(6)}}> 希望 家賃負担 :  {profile.price_of_rent}  </p> :  <p style={{cursor:'pointer'}} onClick={()=>{this.handleClick(6)}}> 希望 家賃負担 : </p>}
             {num===6? <div>{inputAreaBlock}</div> : <div></div> }
         </div>
       </div>
