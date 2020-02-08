@@ -204,6 +204,42 @@ form{
 .a:hover{
   cursor: pointer;
 }
+.good{
+  width:75px;
+  height:45px;
+  display:inline-block;
+  color:gray;
+  background-color:#FFFF88;
+  margin-right: 30px;
+  margin-left: 15px;
+  box-shadow: 0px 5px 5px 2px  lightgray;
+  border-radius: 20%;
+  border: 1px lightgray solid;
+  /* margin:0; */
+  font-size: 13px;
+  text-align: center;
+  line-height: 45px;
+}
+.good:hover{
+  cursor: pointer;
+}
+.next:hover{
+  cursor: pointer;
+}
+.next{
+  width:70px;
+  height:45px;
+  display:inline-block;
+  color:white;
+  background-color: #87CEFA;
+  margin-left: 20px;
+  box-shadow: 0px 5px 5px 2px  lightgray;
+  border-radius: 20%;
+  border: 1px lightgray solid;
+  font-size: 13px;
+  text-align: center;
+  line-height: 45px;
+}
 .b:hover{
   cursor: pointer;
 }
