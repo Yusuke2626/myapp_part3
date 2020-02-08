@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Main_box from './main_box';
 import MyProfile from './myProfile';
+import Message from './message';
 
 
 export default class App extends React.Component {
@@ -24,6 +25,9 @@ export default class App extends React.Component {
 
   clickFuncTopContents(){
     this.setState({top_contentsOpen:false});
+  }
+  clickFuncMessageArea(){
+    this.setState({messageAreaOpen:true,myProfileOpen:false,lookForPeopleOpen:false})
   }
   handleClick(){
     this.setState({myProfileOpen:true})
@@ -80,7 +84,7 @@ export default class App extends React.Component {
           <h3>share shareでルームメイトを見つけよう </h3>
           <h4 style={cursorstyle} onClick={()=>{this.handleClickLookForPeople()}}> look for people</h4>
           <div className='contents2' >
-            < MyProfile />
+            < MyProfile clickMessageArea={()=>{this.clickFuncMessageArea();}}/>
           </div>
         </div>
     );
@@ -144,7 +148,18 @@ export default class App extends React.Component {
         </div>
       );
     }else if(this.state.messageAreaOpen){
-
+      var profile = user[1];
+      var user = user[0];
+      return(
+        <div>
+          <h3>share shareでルームメイトを見つけよう </h3>
+          <h4 style={cursorstyle} onClick={()=>{this.handleClick()}}> my_profile</h4>
+          <div className='contents2' >
+          
+            <Message />
+          </div>
+        </div>
+      )
     }
     else{
         console.log('root_login_user',user[0]);
@@ -169,9 +184,8 @@ export default class App extends React.Component {
         var num = 0;
         var index_num = 999;
         var partner_block = [];
-
         var userProfile = allProfile.filter(p=>p.user_id===33)
-        // console.log('profilecheck0',userProfile[0].hobby);
+
         console.log('userslength',users);
         console.log(profile);
         console.log('allprofilecheck2',allProfile);
@@ -230,6 +244,6 @@ export default class App extends React.Component {
             </div>
           </div>
         );
-      }
+    }
   }
 }
