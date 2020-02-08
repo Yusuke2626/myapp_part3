@@ -26,7 +26,6 @@ class App extends React.Component{
     areaChange(e){
       var inputValue = e.target.value;
       this.setState({area:inputValue});
-
     }
     hobbyChange(e){
       var inputValue = e.target.value;
@@ -52,12 +51,14 @@ class App extends React.Component{
       )
       console.log('ok');
     };
+    clickMessageArea(){
+      return this.props.clickMessageArea();
+    };
 
   render(){
     var user = this.state.data[0];
     var profile = this.state.data[1];
     var meet_people = this.state.data[2];
-
 
     console.log(meet_people);
     console.log('myProfile',profile);
@@ -66,7 +67,7 @@ class App extends React.Component{
     var meet_people_block = [];
     for(var u of meet_people){
       meet_people_block.push(
-        <a href='/home'><img className='people_img' src={u.img} /></a>
+        <img className='people_img' src={u.img} onClick={()=>{this.clickMessageArea();}}/>
       )
     }
     var inputStyle = this.state.display;
@@ -98,12 +99,6 @@ class App extends React.Component{
     var inputAreaBlock6 = (<div><input style={{margin:5, width:200}} value={this.state.expect_area}
                             onChange={(e)=>{this.hobbyChange(e)}}></input>
                             <input type='submit' value='変更' style={{margin: 5,width:200}} onClick={()=>{this.postMyprofile()}}></input></div> );
-
-
-
-
-
-
     return(
     <div>
       <div className='profile_area' >
