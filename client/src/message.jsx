@@ -60,7 +60,7 @@ class App extends React.Component{
     // var partnerUser = likeUsers[0].filter(u=>u.id ===partnerUserId)
     if(Array.isArray(messages)){
       var messages = messages.filter(m=>m.to_user_id === partnerUserId || m.user_id===partnerUserId)
-      var messages = messages.filter(m=>m.user_id===partnerUserId)
+      // var messages = messages.filter(m=>m.user_id===partnerUserId)
     }
     if(likeUsers.length>1){
       var partnerUser = likeUsers.filter(u=>u.id ===partnerUserId)[0]
