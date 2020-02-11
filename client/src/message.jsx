@@ -29,6 +29,7 @@ class App extends React.Component{
          body: JSON.stringify({
           text:this.state.text,
           user_id:this.state.userId,
+
         }),
       },
       fetch("http://localhost:3000/mypage")
@@ -43,6 +44,7 @@ class App extends React.Component{
     var user = this.state.data[0];
     var profile = this.state.data[1];
     var meet_people = this.state.data[2];
+    var messages = this.state.data[3];
 
     console.log(meet_people);
     console.log('myProfile',profile);
@@ -53,8 +55,13 @@ class App extends React.Component{
     var likeUsers = this.state.data[2];
     console.log(likeUsers);
     console.log('likeUsers.length',likeUsers.length);
+    console.log(this.state.data[3]);
 
     // var partnerUser = likeUsers[0].filter(u=>u.id ===partnerUserId)
+    if(Array.isArray(messages)){
+      var messages = messages.filter(m=>m.to_user_id === partnerUserId || m.user_id===partnerUserId)
+      var messages = messages.filter(m=>m.user_id===partnerUserId)
+    }
     if(likeUsers.length>1){
       var partnerUser = likeUsers.filter(u=>u.id ===partnerUserId)[0]
     }else{
@@ -62,14 +69,7 @@ class App extends React.Component{
     }
 
     console.log('partnerUser',partnerUser);
-    // .find((p)=>p.user_id ===u.id);
-
-    var meet_people_block = [];
-    for(var u of meet_people){
-      meet_people_block.push(
-        <img className='people_img' src={u.img} />
-      )
-    }
+    console.log('messages',messages);
 
     return(
     <div>
@@ -81,7 +81,7 @@ class App extends React.Component{
       <div className='message_area'>
         <p>each message</p>
       </div>
-      <input type="text"  className='message_input' name='text' value={this.state.text} onChange={(e) => this.setState({text: e.target.value,userId:user.id})}/>
+      <input type="text"  className='message_input' name='text' value={this.state.text} onChange={(e) => this.setState({text: e.target.value,userId:partnerUser.id})}/>
       <input type='submit' value='送信' className='message_submit' style={{margin: 5,width:200}} onClick={()=>{this.postMessage()}}/>
     </div>
     )
