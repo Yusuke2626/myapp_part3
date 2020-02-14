@@ -8,6 +8,10 @@ var connection = mysql.createConnection({
   password: '',
   database: 'myapp_part2',
 })
+router.get('/', function(req, res, next) {
+  console.log(req.user);
+});
+
 
 router.post('/', function(req, res, next) {
   console.log('hello');
@@ -21,7 +25,7 @@ router.post('/', function(req, res, next) {
     connection.query(`select * FROM users where name LIKE '${name}';` , function(err,users){
       console.log(users[0])
       var user = users[0];
-      var post = {user_id:user.id, content:message};
+      var post = {user_id:user.id, content:message,to_user_id:partner_id};
       var sql = `INSERT INTO messages SET ?`;
       connection.query(sql,post,function(error,results,fields){
         if(error) throw error;
@@ -30,7 +34,7 @@ router.post('/', function(req, res, next) {
         var partner = users[0];
         connection.query(`select * FROM userProfile1 where user_id = '${partner_id}';` , function(err,profile){
           var profile = profile[0];
-          connection.query(`select * FROM messages where user_id = '${user.id}' or '${partner_id}' ORDER by id DESC;` , function(err,messages){
+          connection.query(`select * FROM messages where (user_id = '${user.id}' AND to_user_id = '${partner_id}') OR (to_user_id ='${user.id}' AND user_id='${partner_id}' ) ORDER by id DESC;` , function(err,messages){
             var messages = messages
             console.log('messages',messages)
 
