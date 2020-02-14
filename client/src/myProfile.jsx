@@ -51,8 +51,10 @@ class App extends React.Component{
       )
       console.log('ok');
     };
-    clickMessageArea(){
-      return this.props.clickMessageArea();
+    clickMessageArea(userId){
+      console.log('clickuserId',userId);
+      return this.props.clickMessageArea(userId);
+
     };
 
   render(){
@@ -65,11 +67,22 @@ class App extends React.Component{
     console.log('myprofile_user',user);
 
     var meet_people_block = [];
-    for(var u of meet_people){
-      meet_people_block.push(
-        <img className='people_img' src={u.img} onClick={()=>{this.clickMessageArea();}}/>
-      )
+    if(meet_people.length>1){
+      meet_people.forEach(u=>{
+        meet_people_block.push(
+           <img className='people_img' src={u.img} onClick={()=>{this.clickMessageArea(u.id);}}/>
+       )
+       console.log('userId',u.id);
+      })
+    }else{
+      meet_people_block.push(meet_people[0])
     }
+    // for(var u of meet_people){
+    //   meet_people_block.push(
+    //     <img className='people_img' src={u.img} onClick={()=>{this.clickMessageArea(u.id);}}/>
+    //   )
+    //   console.log('userId',u.id);
+    // }
     var inputStyle = this.state.display;
     console.log('inputStyle', inputStyle);
 
